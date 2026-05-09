@@ -17,7 +17,7 @@ Thanks to `Fabián Rodríguez` for his work on the original [OPNsense guide](htt
 
 Remove the small metal plate on the back of the router to the right of the network ports (small phillips head screw), exposing a mini-USB port. Connect it to our PC and open a terminal emulator at `115200 baud, 8N1`. 
 
-```
+```bash
 sudo screen /dev/ttyUSB0 1185200
 ```
 
@@ -29,8 +29,8 @@ After power is applied, wait a few minutes for boot and press Enter a few of tim
 
 If the password doesn't work, reboot and watch for a prompt `press f and ENTER` for fail-safe mode, then run:
 
-```
-bashmount_root
+```bash
+mount_root
 echo -e "ourpassword\nourpassword" | passwd root
 ```
 
@@ -40,8 +40,8 @@ Then reboot and log in.
 
 We need to replace the UEFI with something open-source that will let us install a different OS, so Coreboot to the rescue!
 
-```
-bashcd /root/firmware
+```bash
+cd /root/firmware
 wget https://raw.githubusercontent.com/PhoenixSheppy/VeloCloud-Edge-510-OPNsense-Conversion-Guide/refs/heads/main/firmware/2017-4-10-coreboot.rom
 cd ..
 ./dmi-tool -u firmware/2017-4-10-coreboot.rom
@@ -53,8 +53,8 @@ Wait for `VERIFIED` before continuing.
 
 ### Disable the Watchdog Timer (CANNOT BE SKIPPED)
 
-```
-bashi2cset -y 1 0x24 0x00 0x00
+```bash
+i2cset -y 1 0x24 0x00 0x00
 i2cset -y 1 0x24 0x01 0x00
 ```
 
@@ -68,7 +68,7 @@ Download the latest Debian amd64 netinst ISO from https://www.debian.org/distrib
 
 At the time of this writing:
 
-```
+```bash
 wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.4.0-amd64-netinst.iso
 ```
 
@@ -77,7 +77,7 @@ wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.4.0-amd
 Find the USB drive's device name by running `lsblk` and identify it by size, do not write it to the system disk. Then write the image:
 
 
-```
+```bash
 sudo dd if=debian-*-amd64-netinst.iso of=/dev/sdX bs=4M status=progress
 sudo sync
 ```
@@ -101,7 +101,7 @@ When we see the installer boot menu appear on the serial console, press `Esc`. A
 
 At the `boot:` prompt, enter:
 
-```
+```bash
 install console=ttyS1,115200n8
 ```
 
