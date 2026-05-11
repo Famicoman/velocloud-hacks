@@ -21,7 +21,7 @@ Remove the small metal plate on the back of the router to the right of the netwo
 sudo screen /dev/ttyUSB0 115200
 ```
 
-Connect a network cable from any port to our switch, then plug in power to the VeloCloud.
+Connect a network cable to GE4 on the VeloCloud from any port to our switch, then plug in power to the VeloCloud.
 
 ### Login to VeloCloud OS
 
@@ -46,7 +46,7 @@ wget https://raw.githubusercontent.com/PhoenixSheppy/VeloCloud-Edge-510-OPNsense
 cd ..
 ./dmi-tool -u firmware/2017-4-10-coreboot.rom
 ./dmi-tool -w -p EDGE510 -v 1
-flashrom –programmer internal –write firmware/2017-4-10-coreboot.rom
+flashrom -p internal -w ./firmware/2017-4-10-coreboot.rom
 ```
 
 Wait for `VERIFIED` before continuing.
