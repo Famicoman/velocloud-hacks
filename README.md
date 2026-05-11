@@ -18,7 +18,7 @@ Thanks to `Fabián Rodríguez` for his work on the original [OPNsense guide](htt
 Remove the small metal plate on the back of the router to the right of the network ports (small phillips head screw), exposing a mini-USB port. Connect it to our PC and open a terminal emulator at `115200 baud, 8N1`. 
 
 ```bash
-sudo screen /dev/ttyUSB0 1185200
+sudo screen /dev/ttyUSB0 115200
 ```
 
 Connect a network cable from any port to our switch, then plug in power to the VeloCloud.
